@@ -32,6 +32,6 @@ class AppConfig {
   }
 }
 
-const configService = new AppConfig(process.env);
+const appConfig = new AppConfig(process.env);
 
-export {configService};
+export {appConfig};
