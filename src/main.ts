@@ -6,7 +6,8 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   // Swagger API Setup
-  const docs = new DocumentBuilder()
+  if(!(appConfig.getValue("MODE")=="PROD")){
+    const docs = new DocumentBuilder()
     .setTitle('Book Management System')
     .setDescription(
       `
@@ -25,6 +26,7 @@ async function bootstrap() {
     .build();
   const documentFactory = () => SwaggerModule.createDocument(app, docs);
   SwaggerModule.setup('/docs', app, documentFactory);
+  }
   // End Swagger API Setup
 
   await app.listen(appConfig.getValue("APP_PORT") ?? 3000);
