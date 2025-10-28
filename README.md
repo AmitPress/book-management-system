@@ -8,3 +8,4 @@
 - `pg`                : The de-facto postgres driver
 - `typeorm`           : The most used ORM for nestjs
 - `@nestjs/typeorm`   : The wrapper around the ORM for smooth integration
+- `dotenv`            : To access safely stored environment variables
