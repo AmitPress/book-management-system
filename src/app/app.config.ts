@@ -1,6 +1,5 @@
 require('dotenv').config();
-import { TypeOrmModuleOptions } from '@nestjs/typeorm';
-import { Author } from 'src/authors/authors.repository';
+
 
 class AppConfig {
   constructor(private env: { [key: string]: string | undefined }) {}

@@ -3,10 +3,10 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { appConfig } from './app.config';
-import { AuthorsModule } from 'src/authors/authors.module';
-import { Author } from 'src/authors/authors.repository';
-import { BooksModule } from 'src/books/books.module';
-import { Book } from 'src/books/books.repository';
+import { AuthorsModule } from '../authors/authors.module';
+import { Author } from '../authors/authors.repository';
+import { BooksModule } from '../books/books.module';
+import { Book } from '../books/books.repository';
 @Module({
   imports: [
     TypeOrmModule.forRoot({

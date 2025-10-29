@@ -1,4 +1,4 @@
-import { Author } from 'src/authors/authors.repository';
+import { Author } from '../authors/authors.repository';
 import {
   Entity,
   PrimaryGeneratedColumn,
