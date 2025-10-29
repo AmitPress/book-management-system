@@ -3,6 +3,7 @@ import { ApiCreatedResponse, ApiInternalServerErrorResponse, ApiOperation, ApiTa
 import { BooksService } from './books.service';
 import { BooksDto } from './books.dto';
 
+
 @ApiTags("Books")
 @Controller('books')
 export class BooksController {
@@ -13,6 +14,6 @@ export class BooksController {
     @ApiInternalServerErrorResponse({description: "Internal Server Error Occured"})
     @Post()
     async createBooks(@Body() booksDto: BooksDto){
-        await this.booksService.createBook({...booksDto})
+        return await this.booksService.createBook({...booksDto})
     }
 }

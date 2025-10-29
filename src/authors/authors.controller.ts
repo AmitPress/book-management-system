@@ -13,6 +13,6 @@ export class AuthorsController {
     @ApiInternalServerErrorResponse({description: "Internal Server Error"})
     @Post()
     async createAuthor(@Body() authorsDto: AuthorsDto){
-        await this.authorsService.createAuthor({...authorsDto})
+        return await this.authorsService.createAuthor({...authorsDto})
     }
 }
