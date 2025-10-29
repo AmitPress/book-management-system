@@ -7,7 +7,7 @@ versatile and useful framework. By nature and design it adhires best of best pra
 coding a backend with this NestJS+Typescript combo. It is really a productive and fruitful way of getting a crucial project done.
 
 ## TLDR
-Skip to the `Run The Project` Section.
+Skip to the `Run The Project` Section. [Swagger API at localhost:5000/docs]
 
 #### Structure
 I have enclosed different `module`s, and other specific codes for that modules in a separate and dedicated folder. This way it becomes easier to maintain the code.
@@ -34,7 +34,7 @@ I have not put any subfolder. But if the project grows or any large project requ
     - `/books/:id` - PATCH/PARTIAL UPDATE an book
     - `/books/:id` - DELETE an book
 
-![Structure](/dist/database-schema.png)
+![Alt Structure](/docs/database-schema.png)
 > Note: According to the current relation, an author can have many books but a book can have only one author. Please refer to the picture above.
 
 #### Packages Used
@@ -54,6 +54,7 @@ I have not put any subfolder. But if the project grows or any large project requ
 - Run `npm run start:dev` to run it in developer mode or `npm run build` and `cd dist` then `node main` to run it in preproduction (make sure you have the .env file in the root along with main.js)
 - To run the unit test `npm run test:watch`
 - To run the e2e test `npm run test:e2e`
+- Hit on `localhost:5000/docs` to play with the swagger docs
 
 #### Conclusion
 I have chose to use the postgres because I am comfortable using it in daily basis. And can set it up real quick. Again, it's quite powerful and handy in most cases. Basically, I chose it because I am most familiar with it.
