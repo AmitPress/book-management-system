@@ -7,7 +7,7 @@ import { Author } from 'src/authors/authors.repository';
 @Injectable()
 export class BooksService {
   constructor(
-    @InjectRepository(Book) private bookRepository: Repository<Book>,
+    @InjectRepository(Book) private booksRepository: Repository<Book>,
     @InjectRepository(Author) private authorRepository: Repository<Author>,
   ) {}
   async createBook(book: BookType) {
@@ -16,21 +16,21 @@ export class BooksService {
     if (!authorEntity) {
       throw new HttpException('Author Not Found', HttpStatus.BAD_REQUEST);
     }
-    const newBook = this.bookRepository.create({
+    const newBook = this.booksRepository.create({
       ...bookdetails,
       author: authorEntity,
     });
-    return this.bookRepository.save(newBook);
+    return this.booksRepository.save(newBook);
   }
   async retrieveOne(id: string): Promise<Book> {
-    const book = await this.bookRepository.findOneBy({ id });
+    const book = await this.booksRepository.findOneBy({ id });
     if (!book) {
       throw new HttpException('Book Not Found', HttpStatus.NOT_FOUND);
     }
     return book;
   }
   async retrieveAll(page: number, limit: number, search?: string) {
-    const query = this.bookRepository.createQueryBuilder('book');
+    const query = this.booksRepository.createQueryBuilder('book');
     if (search) {
       query.where(`book.title ILIKE :search`, { search: `%${search}%` });
     }
@@ -52,7 +52,7 @@ export class BooksService {
 
   async deleteBook(id: string) {
     try {
-      await this.bookRepository.delete({ id });
+      await this.booksRepository.delete({ id });
     } catch (e) {
       console.log(e);
       throw new HttpException('Book Not Found', HttpStatus.NOT_FOUND);
@@ -64,10 +64,10 @@ export class BooksService {
     if (!authorEntity) {
       throw new HttpException('Author Not Found', HttpStatus.BAD_REQUEST);
     }
-    const book = await this.bookRepository.preload({ id, ...bookdetails, author: authorEntity });
+    const book = await this.booksRepository.preload({ id, ...bookdetails, author: authorEntity });
     if (!book) {
       throw new HttpException('Book Not Found', HttpStatus.NOT_FOUND);
     }
-    return await this.bookRepository.save(book);
+    return await this.booksRepository.save(book);
   }
 }
