@@ -1,15 +1,20 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
+  HttpCode,
+  HttpStatus,
   Param,
   ParseIntPipe,
+  Patch,
   Post,
   Query,
 } from '@nestjs/common';
 import {
   ApiCreatedResponse,
   ApiInternalServerErrorResponse,
+  ApiNoContentResponse,
   ApiNotFoundResponse,
   ApiOkResponse,
   ApiOperation,
@@ -74,5 +79,22 @@ export class BooksController {
     @Query('search') search: string,
   ) {
     return await this.booksService.retrieveAll(page, limit, search);
+  }
+
+  @ApiOperation({ description: 'Delete an book based on the id' })
+  @ApiNoContentResponse({ description: 'Book Deleted Successfully' })
+  @ApiNotFoundResponse({ description: 'Book Not Found' })
+  @Delete(':id')
+  @HttpCode(HttpStatus.NO_CONTENT)
+  async deleteAuthor(@Param('id') id: string) {
+    await this.booksService.deleteBook(id);
+  }
+
+  @ApiOperation({ description: 'Update an author based on the id' })
+  @ApiNoContentResponse({ description: 'Author Deleted Successfully' })
+  @ApiNotFoundResponse({ description: 'Author Not Found' })
+  @Patch(':id')
+  updateAuthor(@Param('id') id: string, @Body() authorDto: BooksDto) {
+    return this.booksService.updateBook(id, { ...authorDto });
   }
 }

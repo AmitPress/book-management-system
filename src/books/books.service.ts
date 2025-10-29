@@ -49,4 +49,25 @@ export class BooksService {
       lastPage: Math.ceil(total / limit),
     };
   }
+
+  async deleteBook(id: string) {
+    try {
+      await this.bookRepository.delete({ id });
+    } catch (e) {
+      console.log(e);
+      throw new HttpException('Book Not Found', HttpStatus.NOT_FOUND);
+    }
+  }
+  async updateBook(id: string, payload: BookType) {
+    const { author, ...bookdetails } = payload;
+    const authorEntity = await this.authorRepository.findOneBy({ id: author });
+    if (!authorEntity) {
+      throw new HttpException('Author Not Found', HttpStatus.BAD_REQUEST);
+    }
+    const book = await this.bookRepository.preload({ id, ...bookdetails, author: authorEntity });
+    if (!book) {
+      throw new HttpException('Book Not Found', HttpStatus.NOT_FOUND);
+    }
+    return await this.bookRepository.save(book);
+  }
 }

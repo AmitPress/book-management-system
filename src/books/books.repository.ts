@@ -32,7 +32,7 @@ export class Book {
   @Column({ enum: Genre })
   genre: Genre;
 
-  @ManyToOne(() => Author, {"onDelete": "CASCADE"})
+  @ManyToOne(() => Author, { onDelete: 'CASCADE' })
   @JoinColumn()
   author: Author;
 

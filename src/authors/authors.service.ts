@@ -48,24 +48,18 @@ export class AuthorsService {
     };
   }
 
-  async deleteAuthor(id: string){
-    try{
-      await this.authorsRepository.delete({id});
-    }catch(e){
-      console.log(e)
-      throw new HttpException(
-        "Author Not Found",
-        HttpStatus.NOT_FOUND
-      );
+  async deleteAuthor(id: string) {
+    try {
+      await this.authorsRepository.delete({ id });
+    } catch (e) {
+      console.log(e);
+      throw new HttpException('Author Not Found', HttpStatus.NOT_FOUND);
     }
   }
-  async updateAuthor(id: string, payload: AuthorType){
-    const author = await this.authorsRepository.preload({id, ...payload});
-    if(!author){
-      throw new HttpException(
-        "Author Not Found",
-        HttpStatus.NOT_FOUND
-      );
+  async updateAuthor(id: string, payload: AuthorType) {
+    const author = await this.authorsRepository.preload({ id, ...payload });
+    if (!author) {
+      throw new HttpException('Author Not Found', HttpStatus.NOT_FOUND);
     }
     return await this.authorsRepository.save(author);
   }

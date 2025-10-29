@@ -80,20 +80,20 @@ export class AuthorsController {
     return await this.authorsService.retrieveAll(page, limit, search);
   }
 
-  @ApiOperation({description: "Delete an author based on the id"})
-  @ApiNoContentResponse({description: "Author Deleted Successfully"})
-  @ApiNotFoundResponse({description: "Author Not Found"})
+  @ApiOperation({ description: 'Delete an author based on the id' })
+  @ApiNoContentResponse({ description: 'Author Deleted Successfully' })
+  @ApiNotFoundResponse({ description: 'Author Not Found' })
   @Delete(':id')
   @HttpCode(HttpStatus.NO_CONTENT)
-  async deleteAuthor(@Param('id') id: string){
+  async deleteAuthor(@Param('id') id: string) {
     await this.authorsService.deleteAuthor(id);
   }
 
-  @ApiOperation({description: "Update an author based on the id"})
-  @ApiNoContentResponse({description: "Author Deleted Successfully"})
-  @ApiNotFoundResponse({description: "Author Not Found"})
-  @Patch(":id")
-  updateAuthor(@Param('id') id: string, @Body() authorDto: AuthorsDto){
-    return this.authorsService.updateAuthor(id, {...authorDto});
+  @ApiOperation({ description: 'Update an author based on the id' })
+  @ApiNoContentResponse({ description: 'Author Deleted Successfully' })
+  @ApiNotFoundResponse({ description: 'Author Not Found' })
+  @Patch(':id')
+  updateAuthor(@Param('id') id: string, @Body() authorDto: AuthorsDto) {
+    return this.authorsService.updateAuthor(id, { ...authorDto });
   }
 }
