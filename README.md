@@ -2,7 +2,7 @@
 > A simple backend for managing books
 
 #### Overview
-This excercise demostrates and outlines a structure way, through which a nestjs project can be maintained within a small scale application. NestJs is a very
+This excercise demostrates and outlines a structured way, through which a nestjs project can be maintained within a small scale application. NestJs is a very
 versatile and useful framework. By nature and design it adhires best of best practices for a maintainable codebase architectural point of view. I really enjoy
 coding a backend with this NestJS+Typescript combo. It is really a productive and fruitful way of getting a crucial project done.
 
