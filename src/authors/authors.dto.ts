@@ -1,6 +1,5 @@
 import { ApiProperty } from "@nestjs/swagger";
-import {Type} from "class-transformer";
-import {IsString, IsIBAN, IsDateString, IsUUID} from "class-validator";
+import {IsString, IsDateString} from "class-validator";
 
 export class AuthorsDto{
 

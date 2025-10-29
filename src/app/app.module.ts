@@ -5,6 +5,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { appConfig } from './app.config';
 import { AuthorsModule } from 'src/authors/authors.module';
 import { Author } from 'src/authors/authors.repository';
+import { BooksModule } from 'src/books/books.module';
+import { Book } from 'src/books/books.repository';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
@@ -14,10 +16,11 @@ import { Author } from 'src/authors/authors.repository';
       username: appConfig.getValue("POSTGRES_USER"),
       password: appConfig.getValue("POSTGRES_PASSWORD"),
       database: appConfig.getValue("POSTGRES_DB"),
-      entities:[Author],
+      entities:[Author, Book],
       synchronize: true
     }),
-    AuthorsModule
+    AuthorsModule,
+    BooksModule
   ],
   controllers: [AppController],
   providers: [AppService],
