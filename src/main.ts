@@ -6,11 +6,11 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   // Swagger API Setup
-  if(!(appConfig.getValue("MODE")=="PROD")){
+  if (!(appConfig.getValue('MODE') == 'PROD')) {
     const docs = new DocumentBuilder()
-    .setTitle('Book Management System')
-    .setDescription(
-      `
+      .setTitle('Book Management System')
+      .setDescription(
+        `
       A detailed manual and documentation service for the Book Management System Project.
 
       ## Segments and Details
@@ -19,16 +19,16 @@ async function bootstrap() {
       
       Please visit the github repo and read the **readme.md** file for a holistic idea about the project.
     `,
-    )
-    .setVersion('0.0.1')
-    .addTag('Books', 'Book management endpoints')
-    .addTag('Authors', 'Author management endpoints')
-    .build();
-  const documentFactory = () => SwaggerModule.createDocument(app, docs);
-  SwaggerModule.setup('/docs', app, documentFactory);
+      )
+      .setVersion('0.0.1')
+      .addTag('Books', 'Book management endpoints')
+      .addTag('Authors', 'Author management endpoints')
+      .build();
+    const documentFactory = () => SwaggerModule.createDocument(app, docs);
+    SwaggerModule.setup('/docs', app, documentFactory);
   }
   // End Swagger API Setup
 
-  await app.listen(appConfig.getValue("APP_PORT") ?? 3000);
+  await app.listen(appConfig.getValue('APP_PORT') ?? 3000);
 }
 bootstrap();

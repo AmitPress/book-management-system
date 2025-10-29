@@ -1,4 +1,4 @@
-require('dotenv').config()
+require('dotenv').config();
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { Author } from 'src/authors/authors.repository';
 
@@ -15,4 +15,4 @@ class AppConfig {
 
 const appConfig = new AppConfig(process.env);
 
-export {appConfig};
+export { appConfig };
